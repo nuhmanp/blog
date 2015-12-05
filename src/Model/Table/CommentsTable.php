@@ -1,21 +1,19 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Article;
+use App\Model\Entity\Comment;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Articles Model
+ * Comments Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Categories
+ * @property \Cake\ORM\Association\BelongsTo $Articles
  * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\HasMany $Articlestags
- * @property \Cake\ORM\Association\HasMany $Comments
  */
-class ArticlesTable extends Table
+class CommentsTable extends Table
 {
 
     /**
@@ -28,24 +26,19 @@ class ArticlesTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('articles');
-        $this->displayField('title');
+        $this->table('comments');
+        $this->displayField('id');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Categories', [
-            'foreignKey' => 'category_id',
+        $this->belongsTo('Articles', [
+            'foreignKey' => 'article_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Users', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasMany('Articlestags', [
-            'foreignKey' => 'article_id'
-        ]);
-        $this->hasMany('Comments', [
-            'foreignKey' => 'article_id'
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
         ]);
     }
 
@@ -62,12 +55,13 @@ class ArticlesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('title', 'create')
-            ->notEmpty('title');
-
-        $validator
             ->requirePresence('body', 'create')
             ->notEmpty('body');
+
+        $validator
+            ->add('status', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('status', 'create')
+            ->notEmpty('status');
 
         return $validator;
     }
@@ -81,7 +75,7 @@ class ArticlesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['category_id'], 'Categories'));
+        $rules->add($rules->existsIn(['article_id'], 'Articles'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }

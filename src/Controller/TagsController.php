@@ -32,7 +32,7 @@ class TagsController extends AppController
     public function view($id = null)
     {
         $tag = $this->Tags->get($id, [
-            'contain' => ['Articles']
+            'contain' => ['Articlestags']
         ]);
         $this->set('tag', $tag);
         $this->set('_serialize', ['tag']);
@@ -55,8 +55,7 @@ class TagsController extends AppController
                 $this->Flash->error(__('The tag could not be saved. Please, try again.'));
             }
         }
-        $articles = $this->Tags->Articles->find('list', ['limit' => 200]);
-        $this->set(compact('tag', 'articles'));
+        $this->set(compact('tag'));
         $this->set('_serialize', ['tag']);
     }
 
@@ -70,7 +69,7 @@ class TagsController extends AppController
     public function edit($id = null)
     {
         $tag = $this->Tags->get($id, [
-            'contain' => ['Articles']
+            'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $tag = $this->Tags->patchEntity($tag, $this->request->data);
@@ -81,8 +80,7 @@ class TagsController extends AppController
                 $this->Flash->error(__('The tag could not be saved. Please, try again.'));
             }
         }
-        $articles = $this->Tags->Articles->find('list', ['limit' => 200]);
-        $this->set(compact('tag', 'articles'));
+        $this->set(compact('tag'));
         $this->set('_serialize', ['tag']);
     }
 

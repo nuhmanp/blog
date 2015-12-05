@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
 /**
  * Tags Model
  *
- * @property \Cake\ORM\Association\BelongsToMany $Articles
+ * @property \Cake\ORM\Association\HasMany $Articlestags
  */
 class TagsTable extends Table
 {
@@ -31,10 +31,8 @@ class TagsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsToMany('Articles', [
-            'foreignKey' => 'tag_id',
-            'targetForeignKey' => 'article_id',
-            'joinTable' => 'articles_tags'
+        $this->hasMany('Articlestags', [
+            'foreignKey' => 'tag_id'
         ]);
     }
 

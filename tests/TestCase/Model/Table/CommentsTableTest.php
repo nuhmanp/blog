@@ -1,14 +1,14 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\ArticlestagsTable;
+use App\Model\Table\CommentsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\ArticlestagsTable Test Case
+ * App\Model\Table\CommentsTable Test Case
  */
-class ArticlestagsTableTest extends TestCase
+class CommentsTableTest extends TestCase
 {
 
     /**
@@ -17,11 +17,11 @@ class ArticlestagsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.articlestags',
+        'app.comments',
         'app.articles',
         'app.categories',
         'app.users',
-        'app.comments',
+        'app.articlestags',
         'app.tags',
         'app.articles_tags'
     ];
@@ -34,8 +34,8 @@ class ArticlestagsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Articlestags') ? [] : ['className' => 'App\Model\Table\ArticlestagsTable'];
-        $this->Articlestags = TableRegistry::get('Articlestags', $config);
+        $config = TableRegistry::exists('Comments') ? [] : ['className' => 'App\Model\Table\CommentsTable'];
+        $this->Comments = TableRegistry::get('Comments', $config);
     }
 
     /**
@@ -45,7 +45,7 @@ class ArticlestagsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Articlestags);
+        unset($this->Comments);
 
         parent::tearDown();
     }

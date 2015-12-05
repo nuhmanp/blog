@@ -26,5 +26,13 @@
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($articlestag->id) ?></td>
         </tr>
+        <tr>
+            <th><?= __('Created') ?></th>
+            <td><?= h($articlestag->created) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Modified') ?></th>
+            <td><?= h($articlestag->modified) ?></td>
+        </tr>
     </table>
 </div>

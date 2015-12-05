@@ -1,14 +1,14 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\ArticlestagsTable;
+use App\Model\Table\ArticlesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\ArticlestagsTable Test Case
+ * App\Model\Table\ArticlesTable Test Case
  */
-class ArticlestagsTableTest extends TestCase
+class ArticlesTableTest extends TestCase
 {
 
     /**
@@ -17,13 +17,8 @@ class ArticlestagsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.articlestags',
         'app.articles',
-        'app.categories',
-        'app.users',
-        'app.comments',
-        'app.tags',
-        'app.articles_tags'
+        'app.categories'
     ];
 
     /**
@@ -34,8 +29,8 @@ class ArticlestagsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Articlestags') ? [] : ['className' => 'App\Model\Table\ArticlestagsTable'];
-        $this->Articlestags = TableRegistry::get('Articlestags', $config);
+        $config = TableRegistry::exists('Articles') ? [] : ['className' => 'App\Model\Table\ArticlesTable'];
+        $this->Articles = TableRegistry::get('Articles', $config);
     }
 
     /**
@@ -45,7 +40,7 @@ class ArticlestagsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Articlestags);
+        unset($this->Articles);
 
         parent::tearDown();
     }
@@ -71,11 +66,11 @@ class ArticlestagsTableTest extends TestCase
     }
 
     /**
-     * Test buildRules method
+     * Test isOwnedBy method
      *
      * @return void
      */
-    public function testBuildRules()
+    public function testIsOwnedBy()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

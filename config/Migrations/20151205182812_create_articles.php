@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CreateArticlesTags extends AbstractMigration
+class CreateArticles extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,13 +12,17 @@ class CreateArticlesTags extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('articles_tags');
-        $table->addColumn('article_id', 'integer', [
+        $table = $this->table('articles');
+        $table->addColumn('title', 'string', [
             'default' => null,
-            'limit' => 11,
+            'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('tag_id', 'integer', [
+        $table->addColumn('body', 'text', [
+            'default' => null,
+            'null' => false,
+        ]);
+        $table->addColumn('category_id', 'integer', [
             'default' => null,
             'limit' => 11,
             'null' => false,
@@ -29,6 +33,11 @@ class CreateArticlesTags extends AbstractMigration
         ]);
         $table->addColumn('modified', 'datetime', [
             'default' => null,
+            'null' => false,
+        ]);
+        $table->addColumn('user_id', 'integer', [
+            'default' => null,
+            'limit' => 11,
             'null' => false,
         ]);
         $table->create();

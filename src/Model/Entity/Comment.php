@@ -4,17 +4,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Articlestag Entity.
+ * Comment Entity.
  *
  * @property int $id
+ * @property string $body
  * @property int $article_id
  * @property \App\Model\Entity\Article $article
- * @property int $tag_id
- * @property \App\Model\Entity\Tag $tag
+ * @property int $status
+ * @property int $user_id
+ * @property \App\Model\Entity\User $user
  * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
  */
-class Articlestag extends Entity
+class Comment extends Entity
 {
 
     /**

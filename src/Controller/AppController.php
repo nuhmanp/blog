@@ -79,4 +79,8 @@ class AppController extends Controller
 		// Default deny
 		return false;
 	}
+	 public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'view', 'display']);
+    }
 }
