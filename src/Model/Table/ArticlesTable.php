@@ -11,6 +11,10 @@ class ArticlesTable extends Table
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
+        // Just add the belongsTo relation with CategoriesTable
+        $this->belongsTo('Categories', [
+            'foreignKey' => 'category_id',
+        ]);
     }
 	public function validationDefault(Validator $validator)
     {
@@ -22,5 +26,9 @@ class ArticlesTable extends Table
 
         return $validator;
     }
+	public function isOwnedBy($articleId, $userId)
+	{
+		return $this->exists(['id' => $articleId, 'user_id' => $userId]);
+	}
 }
 ?>
