@@ -33,6 +33,7 @@ class TagsTable extends Table
 
         $this->hasMany('Articlestags', [
             'foreignKey' => 'tag_id'
+			
         ]);
     }
 

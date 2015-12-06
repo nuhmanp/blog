@@ -25,7 +25,8 @@ class ArticlesController extends AppController
             'contain' => ['Categories', 'Users']
         ];
         $this->set('articles', $this->paginate($this->Articles));
-		$this->set('usernow', '456');
+		//$this->set('usernow', '456');
+		//$this->Session->write('Student', '56666');
 		//$home = $this->Auth->user('id');
 		//$this->set('usernow', $this->Auth->user('id'));
         $this->set('_serialize', ['articles']);

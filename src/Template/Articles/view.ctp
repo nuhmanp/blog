@@ -1,20 +1,3 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Article'), ['action' => 'edit', $article->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Article'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Articles'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Article'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Categories'), ['controller' => 'Categories', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Articlestags'), ['controller' => 'Articlestags', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Articlestag'), ['controller' => 'Articlestags', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
 <div class="articles view large-9 medium-8 columns content">
 <p><?= $this->Html->link(__('Home'), ['action' => 'index']) ?> >> <?= $article->has('category') ? $this->Html->link($article->category->name, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) : '' ?></p>
 	<p><?= $date = $article->modified ?></p>
@@ -52,22 +35,18 @@
     <div class="related">
         <h4><?= __('Related Articlestags') ?></h4>
         <?php if (!empty($article->articlestags)): ?>
-        <table cellpadding="0" cellspacing="0">
+       <!--<table cellpadding="0" cellspacing="0">
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Article Id') ?></th>
                 <th><?= __('Tag Id') ?></th>
-                <th><?= __('Created') ?></th>
-                <th><?= __('Modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
-            </tr>
+            </tr> -->
             <?php foreach ($article->articlestags as $articlestags): ?>
-            <tr>
+           <!-- <tr>
                 <td><?= h($articlestags->id) ?></td>
                 <td><?= h($articlestags->article_id) ?></td>
                 <td><?= h($articlestags->tag_id) ?></td>
-                <td><?= h($articlestags->created) ?></td>
-                <td><?= h($articlestags->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Articlestags', 'action' => 'view', $articlestags->id]) ?>
 
@@ -76,7 +55,7 @@
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Articlestags', 'action' => 'delete', $articlestags->id], ['confirm' => __('Are you sure you want to delete # {0}?', $articlestags->id)]) ?>
 
                 </td>
-            </tr>
+            </tr>  -->
             <?php endforeach; ?>
         </table>
     <?php endif; ?>

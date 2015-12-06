@@ -1,17 +1,3 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Article'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Categories'), ['controller' => 'Categories', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Articlestags'), ['controller' => 'Articlestags', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Articlestag'), ['controller' => 'Articlestags', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="articles index large-9 medium-8 columns content">
     <h3><?= __('Articles') ?></h3>
     <table cellpadding="0" cellspacing="0">
@@ -52,4 +38,7 @@
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>
+	<div>
+	<?= $this->Html->link(__('New Article'), ['action' => 'add']) ?>
+	</div>
 </div>
