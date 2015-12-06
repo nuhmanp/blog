@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
+
 /**
  * Articles Controller
  *
@@ -10,7 +11,7 @@ use App\Controller\AppController;
  */
 class ArticlesController extends AppController
 {
-
+	
     /**
      * Index method
      *
@@ -24,7 +25,11 @@ class ArticlesController extends AppController
             'contain' => ['Categories', 'Users']
         ];
         $this->set('articles', $this->paginate($this->Articles));
+		$this->set('usernow', '456');
+		//$home = $this->Auth->user('id');
+		//$this->set('usernow', $this->Auth->user('id'));
         $this->set('_serialize', ['articles']);
+		//$this->usernow = $this->Auth->user('id');
     }
 
     /**
@@ -116,4 +121,21 @@ class ArticlesController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+	public function isAuthorized($user)
+	{
+		// All registered users can add articles
+		if ($this->request->action === 'add') {
+			return true;
+		}
+
+		// The owner of an article can edit and delete it
+		if (in_array($this->request->action, ['edit', 'delete'])) {
+			$articleId = (int)$this->request->params['pass'][0];
+			if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+				return true;
+			}
+		}
+
+		return parent::isAuthorized($user);
+	}
 }

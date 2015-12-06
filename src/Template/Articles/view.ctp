@@ -119,4 +119,6 @@
         </table>
     <?php endif; ?>
     </div>
+	<h5>Add Comment</h5>
+	<li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?> </li>
 </div>

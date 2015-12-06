@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
+
+
 /**
  * Users Controller
  *
@@ -19,6 +21,7 @@ class UsersController extends AppController
     public function index()
     {
         $this->set('users', $this->paginate($this->Users));
+		//$this->set('users', $this->Users->find('all'));
         $this->set('_serialize', ['users']);
     }
 
@@ -31,11 +34,8 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => ['Articles', 'Comments']
-        ]);
-        $this->set('user', $user);
-        $this->set('_serialize', ['user']);
+        $user = $this->Users->get($id);
+        $this->set(compact('user'));
     }
 
     /**
@@ -50,13 +50,12 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                return $this->redirect(['action' => 'add']);
             }
+            $this->Flash->error(__('Unable to add the user.'));
         }
         $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
+		$this->set('_serialize', ['user']);
     }
 
     /**

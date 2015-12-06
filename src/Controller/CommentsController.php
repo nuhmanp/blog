@@ -51,6 +51,7 @@ class CommentsController extends AppController
         $comment = $this->Comments->newEntity();
         if ($this->request->is('post')) {
             $comment = $this->Comments->patchEntity($comment, $this->request->data);
+			$comment->user_id = $this->Auth->user('id');
             if ($this->Comments->save($comment)) {
                 $this->Flash->success(__('The comment has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -109,4 +110,21 @@ class CommentsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+	public function isAuthorized($user)
+	{
+		// All registered users can add articles
+		if ($this->request->action === 'add') {
+			return true;
+		}
+
+		// The owner of an article can edit and delete it
+		if (in_array($this->request->action, ['edit', 'delete'])) {
+			$articleId = (int)$this->request->params['pass'][0];
+			if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+				return true;
+			}
+		}
+
+		return parent::isAuthorized($user);
+	}
 }
