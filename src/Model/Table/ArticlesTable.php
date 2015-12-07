@@ -43,7 +43,8 @@ class ArticlesTable extends Table
             'foreignKey' => 'user_id'
         ]);
         $this->hasMany('Articlestags', [
-            'foreignKey' => 'article_id'
+            'foreignKey' => 'article_id',array('joins' => 
+			array( 'table' => 'tags', 'alias' => 'Tag', 'type' => 'inner', 'foreignKey' => 'id'))
         ]);
 		
         $this->hasMany('Comments', [

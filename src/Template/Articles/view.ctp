@@ -43,7 +43,7 @@
                 <th class="actions"><?= __('Actions') ?></th>
             </tr> -->
             <?php foreach ($article->articlestags as $articlestags): ?>
-           <!-- <tr>
+           <!-- --><tr>
                 <td><?= h($articlestags->id) ?></td>
                 <td><?= h($articlestags->article_id) ?></td>
                 <td><?= h($articlestags->tag_id) ?></td>
@@ -55,7 +55,7 @@
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Articlestags', 'action' => 'delete', $articlestags->id], ['confirm' => __('Are you sure you want to delete # {0}?', $articlestags->id)]) ?>
 
                 </td>
-            </tr>  -->
+            </tr>  
             <?php endforeach; ?>
         </table>
     <?php endif; ?>
