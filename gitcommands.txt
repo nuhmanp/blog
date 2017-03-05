@@ -1,0 +1,17 @@
+git branch search-room
+git checkout search-room  //verify git branch
+git status
+git add -A //adding to stagging
+git commit -m "Added search room functionality"
+git push -u origin search-room
+git checkout master
+git pull origin master
+git merge search-room
+git push origin master
+git branch --merged
+git branch -d search-room
+git push origin --delete search-room
+
+
+
+
